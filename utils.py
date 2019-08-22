@@ -1,5 +1,6 @@
 import numpy as np
 import torch 
+import cv2
 from PIL import Image
 
 
@@ -18,13 +19,13 @@ def save_img(image_tensor, filename):
     image_tensor = image_tensor.int()
     image_numpy = image_tensor.numpy()
     np.where(image_numpy>0, 1, 0)
-    print(np.unique(image_numpy))
+#     print(np.unique(image_numpy))
     image_numpy  = np.transpose(image_numpy, (1, 2, 0))
-    print(image_numpy.shape)
+#     print(image_numpy.shape)
     
 #    image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 
 #    image_numpy = image_numpy.clip(0, 1)
-#    image_numpy = image_numpy.astype(np.uint8)
-    image_pil = Image.fromarray(image_numpy)
-    image_pil.save(filename)
+    image_numpy = image_numpy.astype(np.uint8)
+#     image_pil = Image.fromarray(image_numpy)
+#     cv2.imwrite()
     print("Image saved as {}".format(filename))
