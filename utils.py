@@ -17,6 +17,7 @@ def save_img(image_tensor, filename):
     print(torch.unique(image_tensor))
     image_numpy = image_tensor.float().numpy()
     np.where(image_numpy>0, 1, 0)
+    image_numpy  = np.transpose(image_numpy, (1, 2, 0))
 #    image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 
 #    image_numpy = image_numpy.clip(0, 1)
 #    image_numpy = image_numpy.astype(np.uint8)
