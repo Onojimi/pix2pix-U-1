@@ -21,6 +21,7 @@ def save_img(image_tensor, filename):
     np.where(image_numpy>0, 1, 0)
 #     print(np.unique(image_numpy))
     image_numpy  = np.transpose(image_numpy, (1, 2, 0))
+    image_numpy *= 255
 #     print(image_numpy.shape)
     
 #    image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 
