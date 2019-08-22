@@ -39,7 +39,9 @@ for image_name in image_filenames:
     img = transform(img)
     input = img.unsqueeze(0).to(device)
     out = net_g(input)
+    print(torch.unique(out))
     out = F.sigmoid(out)
+    print(torch.unique(out))
     out_img = out.detach().squeeze(0).cpu()
 
     if not os.path.exists(os.path.join("result", opt.dataset)):
