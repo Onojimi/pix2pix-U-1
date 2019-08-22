@@ -1,4 +1,5 @@
 import numpy as np
+import torch 
 from PIL import Image
 
 
@@ -13,6 +14,7 @@ def load_img(filepath):
 
 
 def save_img(image_tensor, filename):
+    print(torch.unique(image_tensor))
     image_numpy = image_tensor.float().numpy()
     image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 * 255.0
     image_numpy = image_numpy.clip(0, 255)
