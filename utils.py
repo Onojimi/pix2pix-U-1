@@ -14,7 +14,7 @@ def load_img(filepath):
 
 
 def save_img(image_tensor, filename):
-##  image_tensor: [-1,1]
+    print(torch.unique(image_tensor))
     image_numpy = image_tensor.float().numpy()
     print(np.unique(image_numpy), image_numpy.shape)
     image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 
