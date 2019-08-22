@@ -3,6 +3,7 @@ import argparse
 import os
 
 import torch
+import torch.nn.functional as F
 import torchvision.transforms as transforms
 
 from utils import is_image_file, load_img, save_img
@@ -38,6 +39,7 @@ for image_name in image_filenames:
     img = transform(img)
     input = img.unsqueeze(0).to(device)
     out = net_g(input)
+    out = F.sigmoid(out)
     out_img = out.detach().squeeze(0).cpu()
 
     if not os.path.exists(os.path.join("result", opt.dataset)):
