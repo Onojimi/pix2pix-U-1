@@ -29,7 +29,7 @@ class DatasetFromFolder(data.Dataset):
 #         b = b.resize((286, 286), Image.BICUBIC)
         images = transforms.ToTensor()(images)
         masks = transforms.ToTensor()(masks)
-        print("mask shape:{}".format(masks.shape))
+#        print("mask shape:{}".format(masks.shape))
 #         w_offset = random.randint(0, max(0, 286 - 256 - 1))
 #         h_offset = random.randint(0, max(0, 286 - 256 - 1))
     
