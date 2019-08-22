@@ -17,6 +17,7 @@ def save_img(image_tensor, filename):
 ##  image_tensor: [-1,1]
     image_numpy = image_tensor.float().numpy()
     image_numpy = (np.transpose(image_numpy, (1, 2, 0)) + 1) / 2.0 
+    print(np.unique(image_numpy))
     image_numpy = image_numpy.clip(0, 1)
 #    image_numpy = image_numpy.astype(np.uint8)
     image_pil = Image.fromarray(image_numpy)
