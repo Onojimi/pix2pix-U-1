@@ -34,9 +34,8 @@ class DatasetFromFolder(data.Dataset):
     
 #         a = a[:, h_offset:h_offset + 256, w_offset:w_offset + 256]
 #         b = b[:, h_offset:h_offset + 256, w_offset:w_offset + 256]
-        print(torch.unique(masks))
         images = transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))(images)
-        masks = transforms.Normalize((0.5,), (0.5))(masks)
+        masks = transforms.Normalize((0.5), (0.5))(masks)
 
 #         if random.random() < 0.5:
 #             idx = [i for i in range(a.size(2) - 1, -1, -1)]
