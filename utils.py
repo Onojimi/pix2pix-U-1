@@ -14,7 +14,8 @@ def load_img(filepath):
 
 
 def save_img(image_tensor, filename):
-    print(torch.unique(image_tensor))
+    image_tensor = torch.where(image_tensor>0, torch.full_like(image_tensor, 1), torch.full_like(image_tensor, 0))
+    image_tensor = image_tensor.int()
     image_numpy = image_tensor.numpy()
     np.where(image_numpy>0, 1, 0)
     print(np.unique(image_numpy))
