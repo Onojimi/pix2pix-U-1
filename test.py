@@ -28,7 +28,7 @@ net_g = torch.load(model_path).to(device)
 net_g = nn.DataParallel(net_g,device_ids=[0,1,2])
 
 #image_dir = "dataset/{}/test/images/".format(opt.dataset)
-image_pre_dir = "/media/hdd1/MUTTER_WSI/patches_sn/"
+image_pre_dir = "/media/hdd1/MUTTER_WSI/patches_st/"
 
 image_filenames = [x for x in os.listdir(image_pre_dir) if is_image_file(x)]
 
