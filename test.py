@@ -22,7 +22,7 @@ device = torch.device("cuda:0" if opt.cuda else "cpu")
 
 #where the model is stored
 #model_path = "checkpoint/{}/netG_model_epoch_{}.pth".format(opt.dataset, opt.nepochs)
-model_path = "netG_model_epoch_{}.pth".format(opt.nepochs)
+model_path= "netG_model_epoch_{}.pth".format(opt.nepochs)
 
 net_g = torch.load(model_path).to(device)
 net_g = nn.DataParallel(net_g,device_ids=[0,1,2])
