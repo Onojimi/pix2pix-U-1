@@ -33,6 +33,7 @@ def segmentation(img, model = None, patch_size = 256):
     for patch in patches:
         patch = transform(patch)   
     print(patches.shape)
+    patches = np.transpose(patches,(0, 3, 1, 2))
     patches = torch.from_numpy(patches)
     seg_results = []
     
