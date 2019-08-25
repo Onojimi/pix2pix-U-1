@@ -42,13 +42,13 @@ def segmentation(img, model = None, patch_size = 256):
     else:
         print("using models")
         patches = patches.to(device)
-        seg_results = model(patches)
-        seg_results.detach.cpu()
-#         for patch in patches:
-#             patch = patch.unsqueeze(0)
-#             seg = model(patch)
-#             seg = seg_results.detach().cpu()
-#             seg_results.append(seg)
+#         seg_results = model(patches)
+#         seg_results.detach.cpu()
+        for patch in patches:
+            patch = patch.unsqueeze(0)
+            seg = model(patch)
+            seg = seg_results.detach().cpu()
+            seg_results.append(seg)
 
     for idx, coord in enumerate(coords):
         print('\tWrting mask...', coord)
