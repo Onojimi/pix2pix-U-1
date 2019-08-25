@@ -47,6 +47,7 @@ def segmentation(img, model = None, patch_size = 256):
         for patch in patches:
             patch = patch.unsqueeze(0)
             print(patch.shape, type(patch))
+            print(patch)
             seg = model(patch)
             seg = seg_results.detach().cpu()
             seg_results.append(seg)
