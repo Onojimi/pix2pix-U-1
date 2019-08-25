@@ -40,6 +40,7 @@ for image_name in image_filenames:
     img = load_img(image_pre_dir + image_name)
     img = transform(img)
     input = img.unsqueeze(0).to(device)
+    print(input.shape, type(input))
     out = net_g(input)
     out_img = out.detach().squeeze(0).cpu()
 
