@@ -27,8 +27,9 @@ def segmentation(img, model = None, patch_size = 256):
     patches = np.array(list(coord2patch.values()))
     #print(patches.shape):(16, 256, 256, 3)
     for patch in patches:
-        patch = transform(patch)    
-    print(patches.shape)
+        patch = transform(patch)   
+        print(type(patch)) 
+    print(patches)
     seg_results = []
     
     if model is None:
