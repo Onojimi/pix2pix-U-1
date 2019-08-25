@@ -27,7 +27,7 @@ def segmentation(img, model = None, patch_size = 256):
     patches = np.array(list(coord2patch.values()))
     #print(patches.shape):(16, 256, 256, 3)
     for patch in patches:
-        print(patch.shape)
+        patch = transform(patch)    
     print(patches.shape)
     seg_results = []
     
@@ -35,7 +35,6 @@ def segmentation(img, model = None, patch_size = 256):
         seg_results = patches
     else:
         print("using models")
-        patches = transform(patches)
         patches = patches.to(device)
         seg_results = model(patches)
         seg_results = seg_results.detach().cpu()
