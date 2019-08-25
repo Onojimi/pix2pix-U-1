@@ -4,7 +4,6 @@ import os
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import torchvision.transforms as transforms
 
 from utils import is_image_file, load_img, save_img
