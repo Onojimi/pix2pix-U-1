@@ -37,7 +37,7 @@ def segmentation(img, model = None, patch_size = 256):
     for x in range(0, w, patch_size):
         for y in range(0, h, patch_size):
             print("\tReading patch...", (x,y))
-            coord2patch[str(x)+'_'+str(y)] = np.array(img.crop(x, y, x+patch_size, y+patch_size))
+            coord2patch[str(x)+'_'+str(y)] = np.array(img.crop((x, y, x+patch_size, y+patch_size)))
     
     coords = [tuple(map(int, coord.split('_'))) for coord in coord2patch.keys()]
     patches = np.array(list(coord2patch.values()))
