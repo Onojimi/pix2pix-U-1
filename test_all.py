@@ -63,4 +63,4 @@ for idx, img_name in enumerate(image_filenames):
     img = Image.open(os.path.join(image_pre_dir, img_name))
     print('Processing %d/%d' % (idx+1, len(image_filenames), img_name))
     seg = segmentation(img)
-    seg.save(os.path.join(image_save_dir, img_name))
+    seg.save(os.path.join(image_save_dir, "img_name.png"))
