@@ -14,6 +14,10 @@ opt = parser.parse_args()
 print(opt)
 
 def segmentation(img, model = None, patch_size = 256):
+    transform_list = [transforms.ToTensor(),
+                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    transform = transforms.Compose(transform_list)
+    
     w, h = img.size
     coord2patch = {}
     mosaic = Image.new(size = (w, h), mode = 'RGB')
@@ -29,7 +33,7 @@ def segmentation(img, model = None, patch_size = 256):
     for patch in patches:
         patch = transform(patch)   
         print(type(patch)) 
-    print(patches)
+        print(patch)
     seg_results = []
     
     if model is None:
@@ -51,10 +55,6 @@ def segmentation(img, model = None, patch_size = 256):
 image_pre_dir = "./"
 image_filenames = [x for x in os.listdir(image_pre_dir) if is_image_file(x)]
 image_save_dir = './'
-
-transform_list = [transforms.ToTensor(),
-                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
-transform = transforms.Compose(transform_list)
 
 
 device = torch.device("cuda:0" if opt.cuda else "cpu")
