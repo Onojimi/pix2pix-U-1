@@ -32,7 +32,7 @@ def segmentation(img, model = None, patch_size = 256):
     #print(patches.shape):(16, 256, 256, 3)
     for patch in patches:
         patch = transform(patch)   
-    
+    print(patches.shape)
     patches = torch.from_numpy(patches)
     seg_results = []
     
@@ -41,11 +41,13 @@ def segmentation(img, model = None, patch_size = 256):
     else:
         print("using models")
         patches = patches.to(device)
-        for patch in patches:
-            patch = patch.unsqueeze(0)
-            seg = model(patch)
-            seg = seg_results.detach().cpu()
-            seg_results.append(seg)
+        seg_results = model(patches)
+        seg_results.detach.cpu()
+#         for patch in patches:
+#             patch = patch.unsqueeze(0)
+#             seg = model(patch)
+#             seg = seg_results.detach().cpu()
+#             seg_results.append(seg)
 
     for idx, coord in enumerate(coords):
         print('\tWrting mask...', coord)
