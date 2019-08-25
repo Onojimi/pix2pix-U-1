@@ -47,6 +47,7 @@ def segmentation(img, model = None, patch_size = 256):
     if model is None:
         seg_results = patches
     else:
+        print("using models")
         patches = transform(patches)
         patches = patches.to(device)
         seg_results = model(patches)
