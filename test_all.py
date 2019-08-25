@@ -13,24 +13,8 @@ parser.add_argument('--cuda', action='store_true', help='use cuda')
 opt = parser.parse_args()
 print(opt)
 
-
-image_pre_dir = "./"
-image_filenames = [x for x in os.listdir(image_pre_dir) if is_image_file(x)]
-image_save_dir = './'
-
-transform_list = [transforms.ToTensor(),
-                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
-transform = transforms.Compose(transform_list)
-
-
-device = torch.device("cuda:0" if opt.cuda else "cpu")
-model_path= "netG_model_epoch_{}.pth".format(opt.nepochs)
-net_g = torch.load(model_path).to(device)
-net_g = nn.DataParallel(net_g,device_ids=[0,1,2])
-
 def segmentation(img, model = None, patch_size = 256):
     w, h = img.size
-    model = None
     coord2patch = {}
     mosaic = Image.new(size = (w, h), mode = 'RGB')
     
@@ -59,6 +43,22 @@ def segmentation(img, model = None, patch_size = 256):
         mosaic.paste(Image.fromarray(seg_results[idx]), coord)
         
     return mosaic
+
+
+image_pre_dir = "./"
+image_filenames = [x for x in os.listdir(image_pre_dir) if is_image_file(x)]
+image_save_dir = './'
+
+transform_list = [transforms.ToTensor(),
+                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+transform = transforms.Compose(transform_list)
+
+
+device = torch.device("cuda:0" if opt.cuda else "cpu")
+model_path= "netG_model_epoch_{}.pth".format(opt.nepochs)
+net_g = torch.load(model_path).to(device)
+net_g = nn.DataParallel(net_g,device_ids=[0,1,2])
+
 
 for idx, img_name in enumerate(image_filenames):
     img = Image.open(os.path.join(image_pre_dir, img_name))
