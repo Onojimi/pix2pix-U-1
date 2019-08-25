@@ -41,9 +41,11 @@ def segmentation(img, model = None, patch_size = 256):
     else:
         print("using models")
         patches = patches.to(device)
-        seg_results = model(patches)
-        seg_results = seg_results.detach().cpu()
-    
+        for patch in patches:
+            seg = model(patch)
+            seg = seg_results.detach().cpu()
+            seg_results.append(seg)
+
     for idx, coord in enumerate(coords):
         print('\tWrting mask...', coord)
         mosaic.paste(Image.fromarray(seg_results[idx]), coord)
